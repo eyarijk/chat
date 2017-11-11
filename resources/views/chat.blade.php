@@ -8,77 +8,14 @@
                 <div class="panel-heading"><div class="text-center">Чат</div></div>
 
                 <div class="panel-body" style="height: 340px; overflow: auto;">
-                    <div class="chat-body" style="margin-top: 10px;">
-                        <div class="header">
-                            <strong> Mr.Evrey </strong>
-                            <small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span> 2 min ago</small>
-                        </div>
-                        <div class="chatcolor">
-                            Hello, my name Mr.Evrey
-                        </div>
-                    </div>
-                    <div class="chat-body" style="margin-top: 10px;">
-                        <div class="header">
-                            <strong> Mr.Evrey </strong>
-                            <small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span> 2 min ago</small>
-                        </div>
-                        <div class="chatcolor">
-                            Hello, my name Mr.Evrey
-                        </div>
-                    </div>
-                    <div class="chat-body" style="margin-top: 10px;">
-                        <div class="header">
-                            <strong> Mr.Evrey </strong>
-                            <small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span> 2 min ago</small>
-                        </div>
-                        <div class="chatcolor">
-                            Hello, my name Mr.Evrey
-                        </div>
-                    </div>
-                    <div class="chat-body" style="margin-top: 10px;">
-                        <div class="header">
-                            <strong> Mr.Evrey </strong>
-                            <small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span> 2 min ago</small>
-                        </div>
-                        <div class="chatcolor">
-                            Hello, my name Mr.Evrey
-                        </div>
-                    </div>
-                    <div class="chat-body" style="margin-top: 10px;">
-                        <div class="header">
-                            <strong> Mr.Evrey </strong>
-                            <small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span> 2 min ago</small>
-                        </div>
-                        <div class="chatcolor">
-                            Hello, my name Mr.Evrey
-                        </div>
-                    </div>
-                    <div class="chat-body" style="margin-top: 10px;">
-                        <div class="header">
-                            <strong> Mr.Evrey </strong>
-                            <small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span> 2 min ago</small>
-                        </div>
-                        <div class="chatcolor">
-                            Hello, my name Mr.Evrey
-                        </div>
-                    </div>
-                    <div class="chat-body" style="margin-top: 10px;">
-                        <div class="header">
-                            <strong> Mr.Evrey </strong>
-                            <small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span> 2 min ago</small>
-                        </div>
-                        <div class="chatcolor">
-                            Hello, my name Mr.Evrey
-                        </div>
-                    </div>
-
+                    <chat :key=text v-for="text in text.pesan">@{{ text }}</chat>
                 </div>
             </div>
             <div class="panel-footer">
                 <div class="input-group">
-                    <input type="text" class="form-control" name="" placeholder="Написати повідомлення...">
+                    <input type="text" class="form-control" name="" placeholder="Написати повідомлення..." v-model='input' @keyup.enter='push'>
                     <span class="input-group-btn">
-                        <button class="btn btn-warning">Відправити</button>
+                        <button class="btn btn-warning" @click.prevent='push'>Відправити</button>
                     </span>
                 </div>
             </div>

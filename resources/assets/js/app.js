@@ -17,6 +17,19 @@ window.Vue = require('vue');
 
 Vue.component('example', require('./components/Example.vue'));
 
+Vue.component('chat', require('./components/Chat.vue'));
+
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    data: {
+    	input:'',
+    	text:{
+    		pesan:[]
+    	}
+  },
+  methods:{
+  	push(){
+  		this.text.pesan.push(this.input);
+  	}
+  }
 });
