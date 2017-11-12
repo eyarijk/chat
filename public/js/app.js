@@ -1110,8 +1110,18 @@ var app = new Vue({
   },
   methods: {
     push: function push() {
-      this.text.pesan.push(this.input);
+
+      axios.post('/push', {
+        pesan: this.input
+      });
     }
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    Echo.private('chat').listen('Event', function (e) {
+      _this.text.pesan.push(e.pesan);
+    });
   }
 });
 
@@ -1174,8 +1184,8 @@ window.Pusher = __webpack_require__(37);
 
 window.Echo = new __WEBPACK_IMPORTED_MODULE_0_laravel_echo___default.a({
   broadcaster: 'pusher',
-  key: 'c4496b7fb2cbd552067b',
-  cluster: 'en',
+  key: '57e29708d0c263d100d7',
+  cluster: 'ap1',
   encrypted: true
 });
 

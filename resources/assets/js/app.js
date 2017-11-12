@@ -29,7 +29,16 @@ const app = new Vue({
   },
   methods:{
   	push(){
-  		this.text.pesan.push(this.input);
+
+      axios.post('/push',{
+        pesan: this.input
+      })
   	}
+  },
+  mounted(){
+    Echo.private('chat')
+    .listen('Event',(e) => {
+      this.text.pesan.push(e.pesan);
+    });
   }
 });
