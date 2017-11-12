@@ -1119,19 +1119,34 @@ var app = new Vue({
       this.text.color.push('yellow');
 
       axios.post('/push', {
-        pesan: this.input
+        pesan: this.input,
+        textsession: this.text
       }).then(function (response) {
         _this.input = ' ';
+      });
+    },
+    textsession: function textsession() {
+      var _this2 = this;
+
+      axios.post('/textsession').then(function (response) {
+        if (response.data != '') {
+          _this2.text = response.data;
+        }
       });
     }
   },
   mounted: function mounted() {
-    var _this2 = this;
+    var _this3 = this;
 
+    this.textsession();
     Echo.private('chat').listen('Event', function (e) {
-      _this2.text.pesan.push(e.pesan);
-      _this2.text.user.push(e.user);
-      _this2.text.color.push('green');
+      _this3.text.pesan.push(e.pesan);
+      _this3.text.user.push(e.user);
+      _this3.text.color.push('green');
+
+      axios.post('/ChatSession', {
+        textsession: _this3.text
+      });
     });
   }
 });
@@ -47912,7 +47927,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("small", { staticClass: "pull-right text-muted" }, [
       _c("span", { staticClass: "glyphicon glyphicon-time" }),
-      _vm._v(" 2 min ago")
+      _vm._v(" Нещодавно")
     ])
   }
 ]

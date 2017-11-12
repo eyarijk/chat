@@ -36,19 +36,33 @@ const app = new Vue({
       this.text.color.push('yellow');
       
       axios.post('/push',{
-        pesan: this.input
+        pesan: this.input,
+        textsession:this.text
       })
       .then(response => {
         this.input = ' '
       });
-  	}
+  	},
+    textsession(){
+      axios.post('/textsession')
+      .then(response =>{
+        if (response.data != ''){
+          this.text = response.data;
+        }
+      })
+    }
   },
   mounted(){
+    this.textsession();
     Echo.private('chat')
     .listen('Event',(e) => {
       this.text.pesan.push(e.pesan);
       this.text.user.push(e.user);
       this.text.color.push('green');
+
+      axios.post('/ChatSession',{
+        textsession : this.text
+      })
     });
   }
 });

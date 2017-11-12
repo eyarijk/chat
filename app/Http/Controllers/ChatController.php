@@ -22,6 +22,15 @@ class ChatController extends Controller
     public function push(request $request)
     {
         $user = User::find(Auth::id());
+        $this->chatSession($request);
     	event(new Event($request->pesan,$user));
+    }
+
+    public function textsession(){
+        return session('textsession');
+    }
+    public function chatSession(request $request)
+    {
+        session()->put('textsession',$request->textsession);
     }
 }

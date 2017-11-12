@@ -20,3 +20,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/chat','ChatController@chat');
 
 Route::post('/push','ChatController@push');
+
+Route::post('ChatSession','ChatController@chatSession');
+Route::post('textsession','ChatController@textsession');
