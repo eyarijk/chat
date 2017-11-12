@@ -25,13 +25,15 @@ const app = new Vue({
     	input:'',
     	text:{
     		pesan:[],
-        user:[]
+        user:[],
+        color:[]
     	}
   },
   methods:{
   	push(){
       this.text.pesan.push(this.input);
       this.text.user.push('Я');
+      this.text.color.push('yellow');
       
       axios.post('/push',{
         pesan: this.input
@@ -46,6 +48,7 @@ const app = new Vue({
     .listen('Event',(e) => {
       this.text.pesan.push(e.pesan);
       this.text.user.push(e.user);
+      this.text.color.push('green');
     });
   }
 });

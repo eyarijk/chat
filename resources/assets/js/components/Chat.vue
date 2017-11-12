@@ -4,13 +4,19 @@
         <strong> {{ user }} </strong>
          <small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span> 2 min ago</small>
     </div>
-    <div class="chatcolor">
+    <div class="chatcolor" :class="chatcolor">
     	<slot></slot>
      </div>
 </div>
 </template>
 <script>
 	export default{
-		props:['user']
+		props:['user','color'],
+
+        computed:{
+            chatcolor(){
+            return'chatcolor-'+this.color;
+            }
+        }
 	}
 </script>

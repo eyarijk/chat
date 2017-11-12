@@ -1106,7 +1106,8 @@ var app = new Vue({
     input: '',
     text: {
       pesan: [],
-      user: []
+      user: [],
+      color: []
     }
   },
   methods: {
@@ -1115,6 +1116,7 @@ var app = new Vue({
 
       this.text.pesan.push(this.input);
       this.text.user.push('Я');
+      this.text.color.push('yellow');
 
       axios.post('/push', {
         pesan: this.input
@@ -1129,6 +1131,7 @@ var app = new Vue({
     Echo.private('chat').listen('Event', function (e) {
       _this2.text.pesan.push(e.pesan);
       _this2.text.user.push(e.user);
+      _this2.text.color.push('green');
     });
   }
 });
@@ -47866,7 +47869,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	props: ['user']
+    props: ['user', 'color'],
+
+    computed: {
+        chatcolor: function chatcolor() {
+            return 'chatcolor-' + this.color;
+        }
+    }
 });
 
 /***/ }),
@@ -47887,7 +47896,12 @@ var render = function() {
         _vm._m(0)
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "chatcolor" }, [_vm._t("default")], 2)
+      _c(
+        "div",
+        { staticClass: "chatcolor", class: _vm.chatcolor },
+        [_vm._t("default")],
+        2
+      )
     ]
   )
 }
