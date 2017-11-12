@@ -29,7 +29,6 @@ const app = new Vue({
   },
   methods:{
   	push(){
-
       axios.post('/push',{
         pesan: this.input
       })

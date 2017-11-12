@@ -13,7 +13,7 @@
             </div>
             <div class="panel-footer">
                 <div class="input-group">
-                    <input type="text" class="form-control" name="" placeholder="Написати повідомлення..." v-model='input' @keyup.enter='push'>
+                    <input type="text" class="form-control" name="" id="chat_value" placeholder="Написати повідомлення..." v-model='input' @keyup.enter='push'>
                     <span class="input-group-btn">
                         <button class="btn btn-warning" @click.prevent='push'>Відправити</button>
                     </span>

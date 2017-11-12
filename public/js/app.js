@@ -1110,7 +1110,6 @@ var app = new Vue({
   },
   methods: {
     push: function push() {
-
       axios.post('/push', {
         pesan: this.input
       });
