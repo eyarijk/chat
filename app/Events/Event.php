@@ -15,10 +15,13 @@ class Event implements ShouldBroadcast
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $pesan;
+    public $user;
 
-    public function __construct($pesan)
+    public function __construct($pesan, $user)
     {
         $this->pesan = $pesan;
+        $this->user = $user->name;
+        $this->dontBroadcastToCurrentUser();
     }
 
    

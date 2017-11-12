@@ -8,7 +8,7 @@
                 <div class="panel-heading"><div class="text-center">Чат</div></div>
 
                 <div class="panel-body" style="height: 340px; overflow: auto;">
-                    <chat :key=text v-for="text in text.pesan">@{{ text }}</chat>
+                    <chat :key=texts.index v-for="texts,index in text.pesan" :user=text.user[index]>@{{ texts }}</chat>
                 </div>
             </div>
             <div class="panel-footer">

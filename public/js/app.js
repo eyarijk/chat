@@ -1072,7 +1072,7 @@ module.exports = function normalizeComponent (
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(11);
-module.exports = __webpack_require__(46);
+module.exports = __webpack_require__(47);
 
 
 /***/ }),
@@ -1105,21 +1105,30 @@ var app = new Vue({
   data: {
     input: '',
     text: {
-      pesan: []
+      pesan: [],
+      user: []
     }
   },
   methods: {
     push: function push() {
+      var _this = this;
+
+      this.text.pesan.push(this.input);
+      this.text.user.push('Я');
+
       axios.post('/push', {
         pesan: this.input
+      }).then(function (response) {
+        _this.input = ' ';
       });
     }
   },
   mounted: function mounted() {
-    var _this = this;
+    var _this2 = this;
 
     Echo.private('chat').listen('Event', function (e) {
-      _this.text.pesan.push(e.pesan);
+      _this2.text.pesan.push(e.pesan);
+      _this2.text.user.push(e.user);
     });
   }
 });
@@ -47797,9 +47806,9 @@ if (false) {
 var disposed = false
 var normalizeComponent = __webpack_require__(9)
 /* script */
-var __vue_script__ = null
+var __vue_script__ = __webpack_require__(45)
 /* template */
-var __vue_template__ = __webpack_require__(45)
+var __vue_template__ = __webpack_require__(46)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -47840,6 +47849,28 @@ module.exports = Component.exports
 
 /***/ }),
 /* 45 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	props: ['user']
+});
+
+/***/ }),
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -47850,7 +47881,11 @@ var render = function() {
     "div",
     { staticClass: "chat-body", staticStyle: { "margin-top": "10px" } },
     [
-      _vm._m(0),
+      _c("div", { staticClass: "header" }, [
+        _c("strong", [_vm._v(" " + _vm._s(_vm.user) + " ")]),
+        _vm._v(" "),
+        _vm._m(0)
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "chatcolor" }, [_vm._t("default")], 2)
     ]
@@ -47861,13 +47896,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "header" }, [
-      _c("strong", [_vm._v(" Mr.Evrey ")]),
-      _vm._v(" "),
-      _c("small", { staticClass: "pull-right text-muted" }, [
-        _c("span", { staticClass: "glyphicon glyphicon-time" }),
-        _vm._v(" 2 min ago")
-      ])
+    return _c("small", { staticClass: "pull-right text-muted" }, [
+      _c("span", { staticClass: "glyphicon glyphicon-time" }),
+      _vm._v(" 2 min ago")
     ])
   }
 ]
@@ -47881,7 +47912,7 @@ if (false) {
 }
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
